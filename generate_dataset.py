@@ -1,13 +1,15 @@
+from tensorflow.python.keras.backend import dtype
 from utils import batch_data, givedata
 import numpy as np
 from datetime import datetime
+import os
 """
     Data will be in batches of 'batchsize' amount of independent 
     random boards where they go from non-explored to very explored.
 """
 
 batchsize = 50  # How many boards to train on in each training session
-reps = 10**2  # How many training sessions
+reps = 10**4  # How many training sessions
 
 data = []
 labels = []
@@ -22,8 +24,12 @@ for r in range(reps):
     data.append(d)
     labels.append(l)
 
-data = np.asarray(data)
-labels = np.asarray(labels)
+    if r % (reps / 10) == 0:
+        # os.system('clear')
+        print("Progress: {}/{} done".format(r, reps))
+
+data = np.asarray(data, dtype=np.float32)
+labels = np.asarray(labels, dtype=np.float32)
 
 print("data.shape:", data.shape)
 print("lablels.shape:", labels.shape)

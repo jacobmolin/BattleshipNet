@@ -99,13 +99,14 @@ epochs = 1
 
 # Training
 history = model.fit(
-    data,
-    labels,
-    # steps_per_epoch=steps_per_epoch,
-    epochs=epochs,
-    initial_epoch=initial_epoch,
+    x=data,
+    y=labels,
     # batch_size=batch_size,
-    validation_data=(val_data, val_labels),
+    # epochs=epochs,
+    # initial_epoch=initial_epoch,
+    # steps_per_epoch=steps_per_epoch,
+    # validation_data=(val_data, val_labels),
+    # shuffle=False
     # callbacks=[cp_callback] # Pass CP callback to training
 )
 

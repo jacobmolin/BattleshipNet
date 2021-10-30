@@ -1,27 +1,26 @@
 from utils import batch_data, givedata
 import numpy as np
 from datetime import datetime
-
-
 """
     Data will be in batches of 'batchsize' amount of independent 
     random boards where they go from non-explored to very explored.
 """
 
 batchsize = 50  # How many boards to train on in each training session
-reps = 10 ** 1  # How many training sessions
+reps = 10**2  # How many training sessions
 
 data = []
 labels = []
 
-for r in range(3):
+for r in range(reps):
     # print("r =", r)
     d, l = batch_data(batchsize=batchsize, autoencode=False)
     # print("d.shape:", d.shape)
     # print("l.shape:", l.shape)
-    data.extend(d)
-    labels.extend(l)
-
+    # data.extend(d)
+    # labels.extend(l)
+    data.append(d)
+    labels.append(l)
 
 data = np.asarray(data)
 labels = np.asarray(labels)
@@ -45,25 +44,13 @@ print("lablels.shape:", labels.shape)
 time_format = datetime.now().strftime("%Y%m%d_%H%M")
 
 np.save(
-    "./datasets/"
-    + "batchsize_"
-    + str(batchsize)
-    + "_total_samples_"
-    + str(batchsize * reps)
-    + "_date_"
-    + time_format
-    + "_data",
+    "./datasets/" + "batchsize_" + str(batchsize) + "_total_samples_" +
+    str(batchsize * reps) + "_date_" + time_format + "_data",
     data,
 )
 
 np.save(
-    "./datasets/"
-    + "batchsize_"
-    + str(batchsize)
-    + "_total_samples_"
-    + str(batchsize * reps)
-    + "_date_"
-    + time_format
-    + "_labels",
+    "./datasets/" + "batchsize_" + str(batchsize) + "_total_samples_" +
+    str(batchsize * reps) + "_date_" + time_format + "_labels",
     labels,
 )

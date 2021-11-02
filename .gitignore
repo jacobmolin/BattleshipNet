@@ -8,3 +8,6 @@ venv/
 
 datasets/
 datasets/*
+
+*.gif
+!*COMPRESSED.gif

@@ -1,4 +1,4 @@
-# Battleship AI
+# BattleshipNet AI Agent
 
 ## Group project in the course TNM095 - Artificial Intelligence for Interactive Media
 
